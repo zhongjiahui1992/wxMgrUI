@@ -1,0 +1,109 @@
+<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+    <!-- brand -->
+    <a href=" " class="navbar-brand text-lt">
+          <span class="imgBox">
+            <img ng-src="{{app.logoImg}}" src="" err-src="img/logo.png" alt="." ng-class="{'hide':noblock}"/>
+          </span>
+        <span class="hidden-folded m-l-xs logoTitle">{{app.name}}</span>
+    </a>
+    <!-- / brand -->
+</div>
+<!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+    <div class="nav navbar-nav hidden-xs">
+        <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+        </a>
+    </div>
+    <!-- nabar right -->
+    <ul class="nav navbar-nav navbar-right">
+
+        <li ng-repeat="menu in appConfig">
+            <a href="" ng-click="getSecondMenuTest(menu.seqId);" class="dropdown-toggle">
+                <i class="fa fa-home fa-fw c-fa"></i> {{menu.name}}
+            </a>
+        </li>
+
+        <li class="dropdown hidden-sm" is-open="lang.isopen" dropdown>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li ng-repeat="(langKey, label) in langs">
+                    <a ng-click="setLang(langKey, $event)" href>{{label}}</a>
+                </li>
+            </ul>
+            <!-- / dropdown -->
+        </li>
+        <li class="hidden-xs">
+            <a ui-fullscreen></a>
+        </li>
+        <li class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <img src="img/code1.png" alt="" style="width: 14px;height: 14px;">
+            </a>
+            <!-- dropdown -->
+            <div class="dropdown-menu w-xl animated fadeInUp">
+                <div class="panel bg-white" ng-init="getCodeMess()">
+                    <div class="panel-heading b-light bg-light">
+                        <strong>{{codeMess.wxInfo.wxname}}</strong>
+                    </div>
+                    <div class="list-group">
+                        <img src="{{codeMess.qrCode}}" style="width: 318px;">
+                        <!--<a href class="media list-group-item">-->
+                    <!--<span class="pull-left thumb-sm">-->
+                      <!--<img src="img/a0.jpg" alt="..." class="img-circle">-->
+                    <!--</span>-->
+                            <!--<span class="media-body block m-b-none">-->
+                      <!--Use awesome animate.css<br>-->
+                      <!--<small class="text-muted">10 minutes ago</small>-->
+                    <!--</span>-->
+                        <!--</a>-->
+                        <!--<a href class="media list-group-item">-->
+                    <!--<span class="media-body block m-b-none">-->
+                      <!--1.0 initial released<br>-->
+                      <!--<small class="text-muted">1 hour ago</small>-->
+                    <!--</span>-->
+                        <!--</a>-->
+                    </div>
+                    <!--<div class="panel-footer text-sm">-->
+                        <!--<a href class="pull-right"><i class="fa fa-cog"></i></a>-->
+                        <!--<a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!-- / dropdown -->
+        </li>
+        <li class="dropdown" dropdown>
+            <a href class="dropdown-toggle clear" dropdown-toggle>
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="img/a0.jpg" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+                <span class="hidden-sm hidden-md">Admin</span> <b class="caret"></b>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ng-click="toUserInfo()">
+                        <span>公众号信息</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="access.signin">注销</a>
+                </li>
+            </ul>
+            <!-- / dropdown -->
+        </li>
+    </ul>
+    <!-- / navbar right -->
+
+</div>
+<!-- / navbar collapse -->

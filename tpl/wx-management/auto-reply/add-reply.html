@@ -1,0 +1,56 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">添加规则</h1>
+</div>
+<div class="wrapper-md" ng-controller="addReplyController">
+  <div class="panel panel-default pmcontainer">
+    <div class="panel-body">
+      <div class="search-form">
+        <form class="form-inline" method="get">
+          <div class="form-item">
+            <label>规则名称</label>
+              <input id="find" type="text" class="form-control inputbox" placeholder="请输入规则名称" ng-model="addReplyData.roleName">
+          </div>
+          <!-- <div class="form-item">
+            <label>基础类型</label>
+            <div class="input-group searchinputbox">
+              <select class="input-sm form-control w-sm inline v-middle" style="width:100px;" ng-model="x" ng-options="m.name for m in roles" ng-init="roleType()" ng-change="roleTypeFind(x)">
+              <option value="">--请选择--</option>
+              </select>
+            </div>
+            <i class="star">*</i>
+          </div> -->
+          <div class="form-item">
+            <label>匹配类型</label>
+            <select class="input-sm form-control w-sm inline v-middle" ng-model="type">
+              <option>半匹配</option>
+              <option>全匹配</option>
+            </select>
+          </div>
+        </form>
+        <form class="form-inline">
+          <div class="form-item">
+            <label>关键词</label>
+            <textarea class="form-control textarea-long" ng-model='addReplyData.keyword' placeholder="请输入关键词" rows="1" style="float: left;">
+            </textarea>
+          </div>
+        </form>
+        <form class="form-inline">
+          <div class="form-item">
+            <label>回复内容</label>
+            <textarea class="form-control textarea-long" ng-model='addReplyData.content' placeholder="请输入回复内容" rows="4" style="float: left;">
+            </textarea>
+          </div>
+        </form>
+      </div>
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="btn-box">
+        <button type="submit" class="btn btn-primary" ng-click="addReply()">
+          <i></i>确定
+        </button>
+        <button type="submit" class="btn btn-primary" ng-click="back()">
+          <i class="fa fa-reply"></i>返回
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

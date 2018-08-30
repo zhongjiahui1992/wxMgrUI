@@ -1,0 +1,116 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">微信联盟</h1>
+</div>
+<div class="wrapper-md" ng-controller="addWxUnionController" ng-init="init()">
+	<div class="panel panel-default pmcontainer">
+		<div class="panel-body">
+			<div class="search-form">
+				<div class="form-inline">
+					<div class="form-item">
+						<label>公众号封面</label>
+						<button type="button" class="btn btn-info" ng-click="uploadFuc(0)">点击上传图片</button>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-item">
+						<div class="img-content">
+							<img id="picThumb" class="uploadImage" src="img/upload.png" />
+						</div>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-item">
+						<label>公众号二维码</label>
+						<button type="button" class="btn btn-info" ng-hide="uploadQrcode" ng-click="uploadFuc(1)">点击上传图片</button>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-item">
+						<div class="img-content">
+							<img id="picQrcode" class="uploadImage" src="img/upload.png" />
+						</div>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-item">
+						<label>公众号标题</label>
+						<textarea class="form-control textarea-long" ng-model='title' placeholder="请输入公众号标题" rows="1"> </textarea>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-item">
+						<label>公众号描述</label>
+						<textarea class="form-control textarea-long" ng-model='description' ng-change="checkText()" placeholder="请输入公众号描述" rows="4"></textarea>
+						<div style="margin-left: 100px;">
+							<p>还可输入{{countNum}}个字</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+			<div class="btn-box">
+				<button type="submit" class="btn btn-primary" ng-click="addInfo()">
+		          <i class="fa fa-check"></i>确定
+		        </button>
+				<button type="submit" class="btn btn-primary" ng-click="back()">
+		          <i class="fa fa-reply"></i>返回
+		        </button>
+			</div>
+		</div>
+	</div>
+	<!--上传图片-->
+	<div class="modal fade" id="imgImportBox">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				        <li class="fa fa-remove"></li>
+				    </button>
+					<h5 class="modal-title">请选择图片</h5>
+				</div>
+				<div class="modal-body">
+					<form method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<div class="file-loading">
+								<input id="inputImg" name="uploadFile" type="file" data-min-file-count="1">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-primary btn-o" ng-click="uploadOk()">
+						<i class="fa fa-check"></i>
+						<span>确定</span>
+					</a>
+					<a href="javascript:;" class="btn btn-default btn-o" data-dismiss="modal">
+						<i class="fa fa-reply"></i>
+						<span>取消</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="vendor/fileinput/fileinput.min.js"></script>
+<script src="vendor/fileinput/locales/zh.js"></script>
+<script type="text/javascript">
+	//上传图片
+	$("#inputImg").fileinput({
+		theme: 'fa',
+		language: 'zh', //设置语言  
+        showUpload: false, //是否显示上传按钮
+        showPreview: true, //展前预览
+        showCaption: true,//是否显示标题
+		showRemove: true,
+		dropZoneEnabled: false,
+		allowedPreviewTypes: ['image'],
+		allowedFileTypes: ['image'],
+		allowedFileExtensions: ['jpg', 'png','bmp','jpeg'],
+		maxFileSize: 2000,
+		maxFileCount: 1,
+		msgPlaceholder:'请选择图片文件',
+		slugCallback: function(filename) {
+			return filename.replace('(', '_').replace(']', '_');
+		}
+	});
+</script>

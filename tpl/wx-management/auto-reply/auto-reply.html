@@ -1,0 +1,257 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">自动回复</h1>
+</div>
+<div class="wrapper-md" ng-controller="autoReplyController">
+  <div class="panel panel-default m-all-0">
+
+
+    <div class="panel-body">
+        <ul class="nav nav-tabs" role="tablist" ng-init="vm.activeTab=1">
+            <li role="presentation" ng-class="{active: vm.activeTab == 1}">
+                <a ng-click="vm.activeTab = 1">关键词回复</a>
+            </li>
+            <li role="presentation" ng-class="{active: vm.activeTab == 2}">
+                <a ng-click="vm.activeTab = 2">未匹配回复</a>
+            </li>
+            <li role="presentation" ng-class="{active: vm.activeTab == 3}">
+                <a ng-click="vm.activeTab = 3">被关注回复</a>
+            </li>
+        </ul>
+        <div class="tab-content tab-bordered proMgr-view-content">
+          <div class="tab-panel" ng-show="vm.activeTab == 1"> 
+            <form method="get">
+                <div class="form-inline">
+                <button type="submit" class="btn btn-primary" ng-click='addReply()' style="margin-top:10px;">
+                  <i class="fa fa-plus"></i>添加回复
+                </button>
+                <!-- <div class="form-group" style="float:right;margin-right:20px;margin-top:10px;">
+                  <input id="find" type="text" class="form-control" placeholder="" ng-model="name" style="margin-right:10px;">
+                  <button type="submit" class="btn btn-primary" ng-click="find()">
+                    <i class="fa fa-search"></i>搜索
+                    </button>
+                </div> -->
+              </div>
+              <div class="panel panel-default" style="margin-top:10px;">
+                <div class="panel-body">
+                  <div class="table-responsive"> 
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>规则名称</th>
+                          <th>关键词</th>
+                          <th>回复内容</th>
+                          <th>创建时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="reply in autoReplyData1" ng-if="reply.type==0">
+                          <td>{{reply.name}}</td>
+                          <td>{{reply.keyword}}</td>
+                          <td>{{reply.content}}</td>
+                          <td>{{reply.createtime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                          <td>
+                            <!-- <a class="btn btn-primary btn-xs"><i class="fa fa-info" title="详细"></i></a> -->
+                            <a class="btn btn-primary btn-xs" ng-click="revise(reply)"><i class="fa fa-edit" title="修改"></i></a>
+                            <a class="btn btn-primary btn-xs" ng-click="deletes(reply.id)"><i class="fa fa-trash-o" title="删除"></i></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div id="demo2"></div>
+                 <!-- <tm-pagination conf="paginationConf"></tm-pagination> -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-panel" ng-show="vm.activeTab == 2">
+            <form method="get">
+              <textarea class="form-control textarea-long" placeholder="" ng-model="unmatchReplayData.content" rows="4" style="margin-top:20px;">
+              </textarea>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="">
+                  <button type="submit" class="btn btn-primary" ng-click="saveUnmatchReplyData()">
+                    保存
+                  </button>
+                    <button type="submit" class="btn btn-primary delUnmatchReply" disabled ng-click="delUnmatchReplyData()">
+                    删除回复
+                  </button>
+                </div>
+            </form>
+          </div>
+          <div class="tab-panel" ng-show="vm.activeTab == 3">
+
+
+            <div class="layui-tab layui-tab-brief">
+              <ul class="layui-tab-title">
+                <li class="layui-this"><i class="layui-icon">&#xe621;</i>图文消息</li>
+                <li><i class="layui-icon">&#xe64a;</i>文本</li>
+              </ul>
+              <div class="layui-tab-content" style="">
+                <div class="layui-tab-item layui-show">
+                  <div id="news_after" style="width:33%;">
+
+                    <div  ng-repeat="picItem in picMessDataGet" id="{{$index}}" class="item">
+                      <a href="{{picItem.url}}" target="_blank">
+                        <p>{{picItem.title}}</p>
+                        <img src="{{picItem.thumburl}}">
+                      </a>
+                      <!--<div class="item-btn"><button type="button" class="item-btn-s update_news">-->
+                        <!--<i class="fa fa-edit"></i>-->
+                      <!--</button><button type="button" class="item-btn-s delete_news">-->
+                        <!--<i class="fa fa-trash-o"></i>-->
+                      <!--</button>-->
+                      <!--</div>-->
+                    </div>
+
+                  </div>
+                  <div id="news_before">
+                    <div class="menu-upload">
+                      <a id="add-art" class="get_material" ng-click="addPicMess()">
+                        <i class="layui-icon">&#xe654;</i>
+                        <div class="name">新建图文消息</div>
+                      </a>
+                    </div>
+                  </div>
+                  <br/>
+                  <button id="submitNewsBtn" class="layui-btn" ng-click="savePicMess()">保存图文</button>
+                  <button id="delNewsBtn" ng-click="delPicMess()" class="layui-btn layui-btn-primary layui-btn-disabled">删除图文回复</button>
+                </div>
+                <div id="tab_text" class="layui-tab-item">
+                  <textarea name="subText" placeholder="请输入被关注回复" ng-model="txtMessData.content" class="layui-textarea"></textarea>
+                  <br/>
+                  <button id="submitSub" ng-click="saveTxtMes()" class="layui-btn">保存</button>
+                  <button id="delCaredtxtReply" ng-click="delTxtMess()" disabled="true" class="layui-btn layui-btn-primary layui-btn-disabled">删除回复</button>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div>
+            </div>
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- 模态框（Modal） -->
+  <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+    <!--<div class="modal-dialog">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+          <!--<h4 class="modal-title" id="myModalLabel">添加图文</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--<div id="" class="layui-layer-content"><div id="newReplyDiv" style="" class="layui-layer-wrap">-->
+            <!--<form id="formNewsReply" class="layui-form" style="width: 90%;">-->
+              <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">标题</label>-->
+                <!--<div class="layui-input-block">-->
+                  <!--<input type="text" name="title" placeholder="请输入标题" ng-model="saveObj.title" autocomplete="off" class="layui-input">-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">封面</label>-->
+                <!--<div class="layui-input-block">-->
+                  <!--<div id="img_after" style="height: 127px; width: 100%; display: none;"></div>-->
+                  <!--<div id="img_before" style="display: block;">-->
+                    <!--<div class="menu-upload" style="width:185px;height:120px;border:1px dashed #d4d4da;margin:5px 0;">-->
+                      <!--<a id="selectImg" class="get_material" style="float:left;width:185px;height:80px;padding:20px 0;">-->
+                        <!--<i class="layui-icon" style="text-align:center;font-size:48px;color:#999;margin:0 69px;"></i>-->
+                        <!--<div class="name" style="text-align: center;">从素材库中选择</div>-->
+                      <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="menu-upload" style="margin: -127px 0 0 215px;width:185px;height:120px;border:1px dashed #d4d4da;">-->
+                      <!--<input id="chooseimg" type="file" name="uploadFile" class="layui-upload-file" style="display: none;">-->
+                      <!--<a class="add_mass_material"style="float:left;width:185px;height:80px;padding:20px 0;">-->
+                        <!--<i class="layui-icon" style="text-align:center;font-size:48px;color:#999;margin:0 69px;"></i>-->
+                        <!--<div class="name" style="text-align: center;">上传图片</div>-->
+                      <!--</a>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">描述</label>-->
+                <!--<div class="layui-input-block">-->
+                  <!--<input type="text" name="desc" placeholder="请输入描述" ng-model="saveObj.desc" autocomplete="off" class="layui-input">-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">链接</label>-->
+                <!--<div class="layui-input-block">-->
+                  <!--<input type="text" name="url" placeholder="请输入跳转链接" ng-model="saveObj.url" autocomplete="off" class="layui-input">-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</form>-->
+          <!--</div></div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn btn-primary" ng-click="addPicData()">确定</button>-->
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
+        <!--</div>-->
+      <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+    <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+  <!--</div>-->
+
+
+<!--图文消息弹出框-->
+  <div id="newReplyDiv" style="display: none">
+    <form id="formNewsReply" class="layui-form" style="width: 90%;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+          <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">封面</label>
+        <div class="layui-input-block">
+          <div id="img_after" style="display:none;height:127px;width:100%;">
+            <!--<div id="H4mHvHLcAtvTrCHAxhAZXzZ3kaXyw5WTORjRSaCIqY8" class="item-img isClicked"><div class="item-box" style="display: none;"><i class="fa fa-check"></i></div><img src="http://mmbiz.qpic.cn/mmbiz_jpg/dbHgjFm90nSFKhCM4HUx0VRvrQ08LaXuouXUv1AXVJ4eDwiaw5236EycOjAOmh8Nj3xMJ9ImK1Yvz9KN3qdiaECA/0?wx_fmt=jpeg"><span>CropImage</span><a class="delete_mass_material" name="mass_img" href="javascript:;">删除</a><h3 id="H4mHvHLcAtvTrCHAxhAZXzZ3kaXyw5WTORjRSaCIqY8" style="display:none;"></h3><input hidden="" type="text" name="picurl" value="http://mmbiz.qpic.cn/mmbiz_jpg/dbHgjFm90nSFKhCM4HUx0VRvrQ08LaXuouXUv1AXVJ4eDwiaw5236EycOjAOmh8Nj3xMJ9ImK1Yvz9KN3qdiaECA/0?wx_fmt=jpeg"></div>-->
+          </div>
+          <div id="img_before">
+            <div class="menu-upload">
+              <a id="selectImg" ng-click="selectImg()" class="get_material">
+                <i class="layui-icon">&#xe654;</i>
+                <div class="name">从素材库中选择</div>
+              </a>
+            </div>
+            <div class="menu-upload" style="margin: -127px 0 0 230px;">
+              <input id="chooseimg" type="file" name="uploadFile" class="layui-upload-file" style="display: none;">
+              <a class="add_mass_material" >
+                <i class="layui-icon">&#xe654;</i>
+                <div class="name">上传图片</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+          <input type="text" name="desc" placeholder="请输入描述" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-block">
+          <input type="text" name="url" placeholder="请输入跳转链接" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item" style="display: none">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="">立即提交</button>
+          <button id="resetNewreply" type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="material_layer_open" style="display: none"></div>
+
+
+</div>

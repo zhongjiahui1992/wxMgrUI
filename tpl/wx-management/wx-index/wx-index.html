@@ -1,0 +1,32 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">主页</h1>
+</div>
+<div class="wrapper-md" ng-controller="wxIndexController">
+  <div class="panel panel-default m-all-0" ng-init="init();">
+    <div class="panel-body">
+		<div class="panel-body" style="font-size:16px;">
+		    新增人数  <span class="label label-warning" style="margin-left:10px;;margin-right:20px;">{{userNumber.newUser}}</span>
+		    总人数  <span class="label label-default" style="margin-left:10px;;margin-right:20px;">{{userNumber.allUser}}</span>
+		</div>
+		<div style="border:1px solid #ccc;padding:0px 50px 50px 50px;">
+			<div style="margin-left:150px;margin-top:50px;">
+		  		<button type="button" class="btn btn-default active" ng-click="getDay(7)" ng-class="{active:size==7}">7天</button>
+		  		<button type="button" class="btn btn-default" ng-click="getDay(30)" ng-class="{active:size==30}">30天</button>
+            	<button type="submit" class="btn btn-primary" style="float:right;margin-right:300px;margin-top:5px;" ng-click="find()";>
+	              	<i class="fa fa-search"></i>搜索
+	            </button>
+	            <div class="form-item" style="float:right;margin-right:0px;">
+	              	<label>选择时间</label>
+	                <div class='input-group date date_picker' datetimepicker  id='datetimepicker1' style='z-index:99;'>
+	                    <input type='text' id='time' class="form-control input-short-o"  ng-model="dateOne" style="width:160px;">
+	                  	<span class="input-group-addon" style="line-height:34px;">
+	                    <span class="glyphicon glyphicon-calendar"></span>
+	                 	</span>
+	                </div>
+            	</div>
+			</div>
+			<div id="main" style="width: 1400px;height:600px;"></div>
+		</div>
+    </div>
+  </div>
+</div>

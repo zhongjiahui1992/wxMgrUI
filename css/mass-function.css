@@ -1,0 +1,120 @@
+/**
+ * ================================
+ * 描述说明  素材管理
+ * @author YuanHaiTao</br>2018/01/26
+ * @version 1.0.0
+ * ================================
+ */ 
+
+.massTips p{
+	margin: 10px 0;
+}
+
+.massTips .tips-one{
+	color: red;
+	font-size: 18px;
+}
+
+.mass-chose{
+	margin: 0;
+}
+
+.mass-chose label{
+	height: 34px;
+	line-height: 34px;
+}
+
+.mass-chose {
+	margin-top: 10px;
+    padding-top: 15px;
+    border-top: solid 1px #e3e3e3;
+}
+
+.material-box{
+	width: 200px;
+	height: 120px;
+	padding: 40px 0;
+	cursor: pointer;
+	text-align: center;
+	border: dashed 1px #e3e3e3;
+}  
+
+.material-box:hover{
+	background-color: #f7f7f7;
+}
+
+.mass-modal-dialog {
+	width: 800px;
+	top: 30%;
+}
+
+.mass-modal-body {
+	height: 400px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.mass-modal-body .col-sm-4{
+	cursor: pointer;
+}
+.massImgbox {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.massImage{
+	border: solid 1px #e3e3e3;
+	margin: 10px;	
+}
+.massImage .imageBox{
+	width: 100%;
+}
+.massImgdel{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background-color: indianred;
+    color: #fff;
+    text-align: center;
+    padding-top: 9px;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+}
+.massImgdel:hover{
+    background-color: #a75656;
+}
+.massImgName{
+    line-height: 30px;
+    text-align: center;    
+    word-break: break-word;
+}
+.massInputstyle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 116px;
+    cursor: pointer;
+    font-size: 30px;
+    outline: medium none;
+    position: absolute;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+}
+#mass_text{
+	overflow: hidden;
+    overflow-y: scroll;
+}
+.mass-table-body{
+    width: 420px;
+    padding: 10px;
+    border: solid 1px #e3e3e3;
+    display: inline-block;
+}

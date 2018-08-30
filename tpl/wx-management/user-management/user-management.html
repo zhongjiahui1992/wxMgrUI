@@ -1,0 +1,156 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">用户管理</h1>
+</div>
+<div class="wrapper-md" ng-controller="userManagementController">
+    <div class="panel panel-default m-all-0">
+        <div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist" ng-init="vm.activeTab=1">
+                <li role="presentation" ng-class="{active: vm.activeTab == 1}">
+                    <a ng-click="vm.activeTab = 1">已关注</a>
+                </li>
+                <li role="presentation" ng-class="{active: vm.activeTab == 2}">
+                    <a ng-click="vm.activeTab = 2">黑名单</a>
+                </li>
+            </ul>
+            <div class="tab-content tab-bordered proMgr-view-content">
+                <div class="tab-panel" ng-show="vm.activeTab == 1">
+
+                    <div class="layui-group">
+                        <div class="layui-group-btn">
+                            <button class="layui-btn" id="createtag" ng-click="createTag()"><i class="layui-icon">&#xe654;</i>新建标签</button>
+                        </div>
+                        <div class="layui-clear"></div>
+                        <div class="layui-group-con" id="wechatGroup">
+                            <div class="layui-group-tit">
+                                <a id="getAllUser">
+                                    <h4 ng-click="getAllUsers()">全部用户</h4>
+                                </a>
+                            </div>
+                            <ul>
+                                <li ng-repeat="tag in tagsData" ng-if="tag.name!='黑名单'&&tag.name!='未分组'" ng-click="getUsersDataByTag($index)">
+                                    <a name={{tag.id}} id={{tag.id+'_'+tag.count}} class="getTagUserList">
+                                        <span>{{tag.name}}<small>({{tag.count}})</small></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="layui-form">
+                        <!--<div class="layui-input-info">-->
+                            <!--<a class="getUserByName" title="subscribe" ng-click="searchUser()"><i class="layui-icon">&#xe615;</i></a>-->
+                            <!--<div class="layui-input-inline">-->
+                                <!--<input type="text" name="nickname" placeholder="用户名称" ng-model="searchData" class="layui-input input_short">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="layui-list-info" style="margin-top: 15px;">
+                            <div id="groupname" class="list-tit">
+                                <h4>{{showTag.name}}</h4>
+                                <a ng-if="showTag.name!='全部用户'"><span ng-click="tagRename()" style="margin-left: 40px;">重命名</span><span ng-click="tagDel()" style="margin-left: 1em;">删除</span></a>
+                            </div>
+                            <div class="list-tit-top">
+                                <input type="checkbox" name="allCheck" ng-model="all" ng-click="toggleTagAndBlackButton()" lay-skin="primary" style="display: block; float: left; margin: 12px 5px 0 0" lay-filter="allChoose">
+                                <span>全选</span>
+                                <!--<div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary">
+                                    <span>全选</span>
+                                    <i class="layui-icon">&#xe618;</i>
+                                </div>-->
+                                <!--<button class="layui-btn layui-btn-primary">打标签</button>-->
+                                <!--<button class="layui-btn layui-btn-primary">加入黑名单</button>-->
+                                <button id="addbatchtag" class="layui-btn layui-btn-disabled" ng-click="addBatchTag()">批量打标签</button>
+                                <button id="addbatchblack" class="layui-btn layui-btn-disabled" ng-click="addBatchBlack()">加入黑名单</button>
+                            </div>
+                            <ul id="userList">
+                                <li ng-repeat="user in usersData">
+                                    <input class="userchecked" type="checkbox" name="subBox" ng-checked="all" ng-click="toggleTagAndBlackButton()" lay-skin="primary" style="display: block;float: left;margin: 32px 0 0 10px;" title={{user.openid}}>
+                                    <img src={{user.headimgurl}}>
+                                    <div class="list-con" ng-init="splitTagids(user.tagids,$index)">
+                                        <h4>
+                                            {{user.nickname}}
+                                            <a ng-if="user.remark">({{user.remark}})</a>
+                                        </h4>
+                                        <span ng-repeat="tagid in tagidsArr[$index]">{{tagid}}</span>
+                                        <i class="layui-nav-more addTagForUser" ng-click="addUserTag($index)"></i>
+                                    </div>
+                                    <button class="layui-btn layui-btn-primary btn-right updateUserRemark" ng-click="updateRemark($index,user.openid,user.remark)">修改备注</button>
+                                </li>
+                            </ul>
+                            <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                            </fieldset>-->
+                            <tm-pagination conf="paginationConf"></tm-pagination>
+                            <!--<div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-0">
+                                <span class="layui-laypage-curr">
+                                    <em class="layui-laypage-em"></em>
+                                    <em>1</em>
+                                </span>
+                                <a href="javascript:;" data-page="2">2</a>
+                                <a href="javascript:;" data-page="3">3</a>
+                                <a href="javascript:;" data-page="4">4</a>
+                                <a href="javascript:;" data-page="5">5</a>
+                                <span>…</span>
+                                <a href="javascript:;" class="layui-laypage-last" title="尾页" data-page="100">末页</a>
+                                <a href="javascript:;" class="layui-laypage-next" data-page="2">下一页</a></div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 2">
+
+                    <div class="layui-form" style="width: 100%;">
+                        <!--<div class="layui-input-info">
+                            <a class="getUserByName" href="#" title="black"><i class="layui-icon">&#xe615;</i></a>
+                          <div class="layui-input-inline">
+                              <input type="text" name="nickname" placeholder="用户名称" class="layui-input input_short">
+                          </div>
+                      </div>-->
+
+                        <div class="layui-list-info blackList">
+                            <div class="list-tit-top">
+                                <input type="checkbox" name="allCheck" ng-model="allTwo" ng-click="toggleTagAndBlackButton2()" lay-skin="primary" style="display: block; float: left; margin: 12px 5px 0 0" lay-filter="allChoose">
+                                <span>全选</span>
+                                <!--<div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary">
+                                    <span>全选</span>
+                                    <i class="layui-icon">&#xe618;</i>
+                                </div>-->
+                                <!--<button class="layui-btn layui-btn-primary">打标签</button>
+                                <button class="layui-btn layui-btn-primary">加入黑名单</button>
+                                <button class="layui-btn layui-btn-disabled">打标签</button>-->
+                                <button id="removeFromBlack" class="layui-btn layui-btn-disabled" ng-click="removeFromBlack()">移出黑名单</button>
+                            </div>
+                            <ul id="blackList">
+                                <li ng-repeat="user in blackListData">
+                                    <input class="userchecked" type="checkbox" name="subBox" ng-checked="allTwo" ng-click="toggleTagAndBlackButton2()" lay-skin="primary" style="display: block;float: left;margin: 32px 0 0 10px;" title={{user.openid}}>
+                                    <img src={{user.headimgurl}}>
+                                    <div class="list-con" ng-init="splitBlackTagids(user.tagids,$index)">
+                                        <h4>
+                                            {{user.nickname}}
+                                            <a ng-if="user.remark">({{user.remark}})</a>
+                                        </h4>
+                                        <span ng-repeat="tagid in blackTagidsArr[$index]">{{tagid}}</span>
+                                        <i class="layui-nav-more addTagForUser" ng-click="addBlackUserTag($index)"></i>
+                                    </div>
+                                    <button class="layui-btn layui-btn-primary btn-right updateUserRemark" ng-click="updateRemark($index,user.openid,user.remark)">修改备注</button>
+                                </li>
+                            </ul>
+                            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                        </fieldset>
+
+                            <!--<div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-0">
+                                <span class="layui-laypage-curr">
+                                    <em class="layui-laypage-em"></em>
+                                    <em>1</em>
+                                </span>
+                                <a href="javascript:;" data-page="2">2</a>
+                                <a href="javascript:;" data-page="3">3</a>
+                                <a href="javascript:;" data-page="4">4</a>
+                                <a href="javascript:;" data-page="5">5</a>
+                                <span>…</span>
+                                <a href="javascript:;" class="layui-laypage-last" title="尾页" data-page="100">末页</a>
+                                <a href="javascript:;" class="layui-laypage-next" data-page="2">下一页</a></div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

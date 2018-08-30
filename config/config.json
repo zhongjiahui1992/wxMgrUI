@@ -1,0 +1,199 @@
+{
+	"moduleId": "user-center-manage",
+	"moduleName": "系统管理",
+	"version": "V100R002C10",
+	"type":"1",
+	"menus": [
+		{
+			"seqId": "12",
+			"parentId": "0",
+			"isLeaf":false,
+			"isRoot":true,
+			"name": "微信管理",
+			"menuType":1,
+			"icon": "icon-settings glyphicon-stats icon text-info-dker",
+			"url": "",
+			"requireJS":[],
+			"description": "一级菜单-微信管理"
+		},
+		{
+			"seqId": "1201",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "素材管理",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/material-management/material-management.html",
+			"requireJS":["js/controllers/wx-management/material-management/material-management.js"],
+			"description": "微信管理-素材管理"
+		},
+		{
+			"seqId": "1202",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "消息管理",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/message-management/message-management.html",
+			"requireJS":["js/controllers/wx-management/message-management/message-management.js"],
+			"description": "微信管理-消息管理"
+		},
+		{
+			"seqId": "1203",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "群发功能",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/mass-function/mass-function.html",
+			"requireJS":["js/controllers/wx-management/mass-function/mass-function.js"],
+			"description": "微信管理-群发功能"
+		},
+		{
+			"seqId": "1204",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "自动回复",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/auto-reply/auto-reply.html",
+			"requireJS":["js/controllers/wx-management/auto-reply/auto-reply.js"],
+			"description": "微信管理-自动回复"
+		},
+		{
+			"seqId": "1205",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "自定义菜单",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/custom-menu/custom-menu.html",
+			"requireJS":["js/controllers/wx-management/custom-menu/custom-menu.js"],
+			"description": "微信管理-自定义菜单"
+		},
+		{
+			"seqId": "1206",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "用户管理",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/user-management/user-management.html",
+			"requireJS":["js/controllers/wx-management/user-management/user-management.js"],
+			"description": "微信管理-用户管理"
+		},
+		{
+			"seqId": "1207",
+			"parentId": "12",
+			"isLeaf":true,
+			"isRoot":false,
+			"name": "微信联盟",
+			"icon": "fa-chevron-right",
+			"url": "tpl/wx-management/wx-union/wxUnion.html",
+			"requireJS":["js/controllers/wx-management/wx-union/wxUnion.js"],
+			"description": "微信管理-微信联盟"
+		}
+		
+	],
+	"components": [],
+	"pages":[
+		{
+			"seqId": "12009",
+			"name": "登陆页面",
+			"url": "tpl/page_signin.html",
+			"requireJS":["js/controllers/signin.js"],
+			"description": "登陆页面"
+		},
+		{
+			"seqId": "12010",
+			"name": "个人信息",
+			"url": "tpl/blocks/userInfo.html",
+			"requireJS":["js/controllers/userInfo.js"],
+			"description": "个人信息"
+		},
+		{
+			"seqId": "12011",
+			"name": "新增图文消息",
+			"url": "tpl/wx-management/material-management/create-graphic.html",
+			"requireJS":["js/controllers/wx-management/material-management/create-graphic.js"],
+			"description": "素材管理-新增图文消息"
+		},
+		{
+			"seqId": "12012",
+			"name": "新增图片",
+			"url": "tpl/wx-management/material-management/create-picture.html",
+			"requireJS":["js/controllers/wx-management/material-management/create-picture.js"],
+			"description": "素材管理-新增图片"
+		},
+		{
+			"seqId": "12013",
+			"name": "新增语音",
+			"url": "tpl/wx-management/material-management/create-voice.html",
+			"requireJS":["js/controllers/wx-management/material-management/create-voice.js"],
+			"description": "素材管理-新增语音"
+		},
+		{
+			"seqId": "12014",
+			"name": "新增视频",
+			"url": "tpl/wx-management/material-management/create-video.html",
+			"requireJS":["js/controllers/wx-management/material-management/create-video.js"],
+			"description": "素材管理-新增视频"
+		},
+		{
+			"seqId": "12041",
+			"name": "添加回复",
+			"url": "tpl/wx-management/auto-reply/add-reply.html",
+			"requireJS":["js/controllers/wx-management/auto-reply/add-reply.js"],
+			"description": "自动回复-添加回复"
+		},
+		{
+			"seqId": "12042",
+			"name": "修改回复",
+			"url": "tpl/wx-management/auto-reply/amend-reply.html",
+			"requireJS":["js/controllers/wx-management/auto-reply/amend-reply.js"],
+			"description": "自动回复-修改回复"
+		},
+		{
+			"seqId": "12043",
+			"name": "添加被关注回复",
+			"url": "tpl/wx-management/auto-reply/add-attention-reply.html",
+			"requireJS":["js/controllers/wx-management/auto-reply/add-attention-reply.js"],
+			"description": "自动回复-添加被关注回复"
+		},
+		{
+			"seqId": "12044",
+			"name": "编辑素材",
+			"url": "tpl/wx-management/material-management/edit-graphic.html",
+			"requireJS":["js/controllers/wx-management/material-management/edit-graphic.js"],
+			"description": "微信管理-素材管理-编辑素材"
+		},
+		{
+			"seqId": "12045",
+			"name": "新增图文消息",
+			"url": "tpl/wx-management/mass-function/edit-graphic.html",
+			"requireJS":["js/controllers/wx-management/mass-function/edit-graphic.js"],
+			"description": "微信管理-群发管理-新建图文"
+		},
+		{
+			"seqId": "12046",
+			"name": "项目新增",
+			"url": "tpl/wx-management/wx-union/add-wxUnion.html",
+			"requireJS":["js/controllers/wx-management/wx-union/add-wxUnion.js"],
+			"description": "微信管理-联盟管理-项目新增"
+		},
+		{
+			"seqId": "12047",
+			"name": "项目编辑",
+			"url": "tpl/wx-management/wx-union/edit-wxUnion.html",
+			"requireJS":["js/controllers/wx-management/wx-union/edit-wxUnion.js"],
+			"description": "微信管理-联盟管理-项目编辑"
+		},
+		{
+			"seqId": "12048",
+			"name": "项目详情",
+			"url": "tpl/wx-management/wx-union/detail-wxUnion.html",
+			"requireJS":["js/controllers/wx-management/wx-union/detail-wxUnion.js"],
+			"description": "微信管理-联盟管理-项目详情"
+		}
+	]
+}

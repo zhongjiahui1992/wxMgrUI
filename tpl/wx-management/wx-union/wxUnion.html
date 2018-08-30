@@ -1,0 +1,51 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">微信联盟</h1>
+</div>
+<div class="wrapper-md" ng-controller="wxUnionController" ng-init="init()">
+	<div class="panel panel-default">
+		<div style="margin: 10px;">
+	        <button type="submit" class="btn btn-primary" ng-click='goAddPage()'>
+	          <i class="fa fa-plus"></i>新增联盟
+	        </button>
+	    </div>
+	    <div class="panel-body">
+	      	<div class="tab-content tab-bordered proMgr-view-content">
+	            <div class="panel panel-default">
+		            <div class="panel-body">
+		                <div class="table-responsive">
+		                  	<table class="table table-bordered table-hover">
+			                    <thead>
+				                    <tr>
+				                        <th class="wid-5">编号</th>
+				                        <th class="wid-20">公众号名称</th>
+				                        <th class="wid-30">公众号简介</th>
+				                        <th class="wid-20">公众号二维码</th>
+				                        <th class="wid-15">操作</th>
+				                    </tr>
+			                    </thead>
+		                    	<tbody>
+		    		                <tr ng-repeat="item in allianceData" ng-init="index=$index+1">
+				                        <td>{{index +(paginationConf.currentPage-1)*paginationConf.itemsPerPage}}</td>
+				                        <td>{{item.title}}</td>
+				                        <td>{{item.description}}</td>
+				                        <td>
+				                        	<span id="layer-photos-wxUnion" class="layer-photos">
+											  	<img layer-pid="{{item.id}}" layer-src="{{httpUrl}}{{item.qrcode}}" src="{{httpUrl}}{{item.qrcode}}" alt="{{item.title}}" width="45px" height="45px">
+				                        	</span>
+				                        </td>
+				                        <td>
+				                        	<a class="btn btn-primary btn-xs" ng-click="allianceView(item.id)"><i class="fa fa-info" title="查看"></i></a>
+		                          			<a class="btn btn-primary btn-xs" ng-click="allianceEdit(item.id)"><i class="fa fa-edit" title="编辑"></i></a>
+		                          			<a class="btn btn-primary btn-xs" ng-click="allianceDelete(item.id)"><i class="fa fa-trash-o" title="删除"></i></a>
+		                        		</td>
+		                      		</tr>
+		                    	</tbody>
+		                    </table>
+		                </div>
+		            </div>
+	            </div>
+	       		 <tm-pagination conf="paginationConf"></tm-pagination>
+	        </div>
+	    </div>
+    </div>
+</div>

@@ -1,0 +1,414 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">素材管理</h1>
+</div>
+<div class="wrapper-md" ng-controller="materialManagementController">
+	<div class="panel panel-default m-all-0">
+		<div class="panel-body">
+			<ul class="nav nav-tabs" role="tablist" ng-init="activeTab()">
+				<li role="presentation" ng-class="{active: activeTab =='graphic' }">
+					<a href="javascript:;" ng-click="focus('get_materials_news','graphic')">图文消息</a>
+				</li>
+				<li role="presentation" ng-class="{active: activeTab =='image' }">
+					<a href="javascript:;" ng-click="focus('get_materials_files','image')">图片</a>
+				</li>
+				<li role="presentation" ng-class="{active: activeTab == 'voice'}">
+					<a href="javascript:;" ng-click="focus('get_materials_files','voice')">语音</a>
+				</li>
+				<li role="presentation" ng-class="{active: activeTab == 'video'}">
+					<a href="javascript:;" ng-click="focus('get_materials_files','video')">视频</a>
+				</li>
+			</ul>
+			<div class="tab-content tab-bordered material-tab-pannel">
+				<div class="tab-panel" ng-show="activeTab == 'graphic'">
+					<div class="form-inline">
+						<button type="submit" class="btn btn-primary m-b-20" ng-click='createGraphic()'>
+	                		新建图文消息
+			            </button>
+					</div>
+					<!-- 瀑布流样式开始 -->
+					<div class="waterfull clearfloat" id="waterfull">
+						<ul>
+							<li class="item" ng-repeat="item in itemList">
+								<div class="media graphic-media-box" ng-repeat="i in item.newsArticleList">
+									<a ng-href="{{i.url}}" target="_blank">
+										<div class="media-body graphicMediaBody">
+											<h4 class="media-heading graphicMediaHead">{{i.title}}</h4>
+											<div class="cdss-1 graphicMediaContent" ng-bind-html="i.content|trustHtml"></div>
+										</div>
+										<div class="media-right graphicMediaRight">
+											<img ng-src="{{i.thumburl}}" class="media-object"  alt="64x64"  data-holder-rendered="true" style="width: 64px; height: 64px;">
+										</div>
+									</a>
+								</div>
+								<div class="cdss-2 clearfloat:after graphic-footer">
+									<p class="fl cdss-5">{{item.updatetime}}</p>
+									<div class="fr cdss-3"><i class="fa fa-2x fa-trash-o" ng-click="materialDel(item.mediaid)"></i></div>
+									<div class="fr cdss-4"><i class="fa fa-2x fa-edit" ng-click="graphicEdit(item.mediaid)"></i></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<span ng-if="dataTips">暂无数据</span>
+				</div>
+				<div class="tab-panel" ng-show="activeTab == 'image'">
+					<form method="post" enctype="multipart/form-data">
+						<div class="form-inline">
+							<button type="submit" class="btn btn-primary m-b-20" ng-click='uploadPicture()'>
+			                    <i class="fa fa-plus"></i>上传图片
+			                </button>
+						</div>
+						<div class="row picture-box">
+							<div class="col-lg-3" ng-repeat="(i,item) in itemList">
+								<div class="panel-heading p-all-0">
+									<img ng-src="{{localgetImg}}{{item.dfsUrl}}" src="" err-src="/src/img/c0.jpg" width="100%">
+								</div>
+								<div class="hbox text-center b-t b-light">
+									<!--<a href class="col padder-v text-muted b-r b-light">
+										<i class="fa fa-2x fa-edit"></i>
+									</a>-->
+									<a href class="col padder-v text-muted">
+										<i class="fa fa-2x fa-trash-o" ng-click="materialDel(item.mediaid)"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!--上传图片-->
+					<div class="modal fade" id="imgImportBox">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								        <li class="fa fa-remove"></li>
+								    </button>
+									<h5 class="modal-title">请选择图片</h5>
+								</div>
+								<div class="modal-body">
+									<form id="imageForm" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<div class="file-loading">
+												<input id="input-file" name="uploadFile" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<a href="javascript:;" class="btn btn-primary btn-o" ng-click="uploadOk()">
+										<i class="fa fa-check"></i>
+										<span>确定</span>
+									</a>
+									<a href="javascript:;" class="btn btn-default btn-o" data-dismiss="modal">
+										<i class="fa fa-reply"></i>
+										<span>取消</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-panel" ng-show="activeTab == 'voice'">
+					<form method="get">
+						<div class="form-inline">
+							<button type="submit" class="btn btn-primary m-b-20" ng-click='uploadVoice()'>
+		                   <i class="fa fa-plus"></i>上传语音
+		                </button>
+						</div>
+						<div class="panel panel-default" style="margin-top:10px;">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>名称</th>
+												<!--<th>时长</th>-->
+												<th>创建时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="(i,item) in itemList">
+												<td><i class="fa fa-music m-r-5"></i>{{item.name}}</td>
+												<!--<td>00:55</td>-->
+												<td>{{item.updatetime}}</td>
+												<td>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-download" ng-click='downloadFile(item.mediaid,item.name)' title="下载"></i></a>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-edit" ng-click='uploadVoice()' title="修改"></i></a>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-trash-o" ng-click='materialDel(item.mediaid)' title="删除"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!--上传音频-->
+					<div class="modal fade" id="voiceImportBox">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								        <li class="fa fa-remove"></li>
+								    </button>
+									<h5 class="modal-title">请选择音频</h5>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">标题</label>
+											<div class="col-sm-10">
+												<input type="text" ng-model="voiceTitle" class="form-control" placeholder="请输入标题">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">分类</label>
+											<div class="col-sm-8">
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>财经
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>动漫
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>儿童
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>搞笑
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>健康
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>教育
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>军事
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>科技
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>历史
+										                </label>
+													</div>
+												</div>
+												<div class="col-sm-3 col-sm-10">
+													<div class="radio">
+														<label class="i-checks i-checks-sm">
+										                  <input type="radio" name="a">
+										                  <i></i>旅行
+										                </label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">上传文件</label>
+											<div class="col-sm-8">
+												<input id="input-voice" type="file" name="uploadFile" multiple class="file" data-show-preview="false" data-min-file-count="1">
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<a href="javascript:;" class="btn btn-primary btn-o" ng-click="voiceSubmit()">
+										<i class="fa fa-check"></i>
+										<span>确定</span>
+									</a>
+									<a href="javascript:;" class="btn btn-default btn-o" data-dismiss="modal">
+										<i class="fa fa-reply"></i>
+										<span>取消</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-panel" ng-show="activeTab == 'video'">
+					<form method="get">
+						<div class="form-inline">
+							<button type="submit" class="btn btn-primary m-b-20" ng-click='uploadVideo()'>
+					                	<i class="fa fa-plus"></i>上传视频
+					               </button>
+						</div>
+						<div class="panel panel-default" style="margin-top:10px;">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>名称</th>
+												<!--<th>时长</th>-->
+												<th>创建时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="(i,item) in itemList">
+												<td><i class="fa fa-play m-r-5"></i>{{item.name}}</td>
+												<!--<td>00:55</td>-->
+												<td>{{item.updatetime}}</td>
+												<td>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-download" ng-click='downloadFile(item.mediaid,item.name)' title="下载"></i></a>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-edit" ng-click='uploadVoice(item.mediaid)' title="修改"></i></a>
+													<a class="btn btn-primary btn-xs"><i class="fa fa-trash-o" ng-click='materialDel(item.mediaid)' title="删除"></i></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!--上传视频-->
+					<div class="modal fade" id="videoImportBox">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										        <li class="fa fa-remove"></li>
+										    </button>
+									<h5 class="modal-title">请选择视频</h5>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">标题</label>
+											<div class="col-sm-10">
+												<input type="text" ng-model="videoTitle" class="form-control" placeholder="请输入标题">
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">简介</label>
+											<div class="col-sm-10">
+												<textarea ng-model="videoDsc" class="form-control" rows="3"></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword3" class="col-sm-2 control-label">上传文件</label>
+											<div class="col-sm-8">
+												<input id="input-video" type="file" name="uploadFile" multiple class="file" data-show-preview="false" data-min-file-count="1">
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<a href="javascript:;" class="btn btn-primary btn-o" ng-click="videoSubmit()">
+										<i class="fa fa-check"></i>
+										<span>确定</span>
+									</a>
+									<a href="javascript:;" class="btn btn-default btn-o" data-dismiss="modal">
+										<i class="fa fa-reply"></i>
+										<span>取消</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<tm-pagination conf="paginationConf" ng-if="paginationShow"></tm-pagination>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="vendor/fileinput/fileinput.min.js"></script>
+<script src="vendor/fileinput/locales/zh.js"></script>
+<script src="vendor/jquery/masonry/jQeasing.js"></script>
+<script src="vendor/jquery/masonry/jquery.masonry.min.js"></script>
+<script src="vendor/jquery/masonry/jQueryColor.js"></script>
+<script type="text/javascript">
+	//上传图片
+	$("#inputImg").fileinput({
+		theme: 'fa',
+		language: 'zh', //设置语言  
+		showUpload: false, //是否显示上传按钮  
+		showRemove: true,
+		dropZoneEnabled: false,
+		showCaption: true, //是否显示标题  
+		allowedPreviewTypes: ['image'],
+		allowedFileTypes: ['image'],
+		allowedFileExtensions: ['jpg', 'png'],
+		maxFileSize: 2000,
+		maxFileCount: 1,
+		slugCallback: function(filename) {
+			return filename.replace('(', '_').replace(']', '_');
+		}
+	});
+	//上传音频
+	$("#input-voice").fileinput({
+		theme: 'fa',
+		language: 'zh', //设置语言  
+		showUpload: false, //是否显示上传按钮  
+		showRemove: true,
+		dropZoneEnabled: false,
+		showCaption: true, //是否显示标题  
+		allowedFileExtensions: ['mp3', 'wmv', 'asf', 'aac', 'ape'],
+		overwriteInitial: false,
+		maxFileSize: 1000,
+		maxFilesNum: 10,
+		slugCallback: function(filename) {
+			return filename.replace('(', '_').replace(']', '_');
+		}
+	});
+
+	//上传视频
+	$("#input-video").fileinput({
+		theme: 'fa',
+		language: 'zh', //设置语言  
+		showUpload: false, //是否显示上传按钮  
+		showRemove: true,
+		dropZoneEnabled: false,
+		showCaption: true, //是否显示标题  
+		allowedFileExtensions: ['mpeg', 'avi', 'mov', 'wmv', 'asf', '3gp', 'mkv', 'flv', 'rmvb', 'mp4'],
+		overwriteInitial: false,
+		//				maxFileSize: 1000,
+		maxFilesNum: 10,
+		allowedFileTypes: ['video', 'flash'],
+		slugCallback: function(filename) {
+			return filename.replace('(', '_').replace(']', '_');
+		}
+	});
+</script>

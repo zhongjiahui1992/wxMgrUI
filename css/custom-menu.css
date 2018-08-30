@@ -1,0 +1,274 @@
+/**
+ * ================================
+ * 描述说明  自定义菜单管理
+ * @author YuanHaiTao</br>2018/01/26
+ * @version 1.0.0
+ * ================================
+ */
+ul{
+	margin: 0;
+	padding:0;
+}
+li{
+	list-style:none;
+}
+/* 自定义菜单主页面外边框 */
+.custom-menu-filedsetbox {
+	padding: 15px;
+	border: 1px solid #e2e2e2;
+}
+/* '自定义菜单'位置 */
+.custom-menu-filedsetbox legend {
+	display: block;
+	width: auto;
+    padding: 0;
+    margin: 0;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+}
+
+.weixin-menu-box {
+	margin: 0;
+	position: relative;
+}
+
+.weixin-menu-box .weixin-preview {
+    position: relative;
+    width: 320px;
+    height: 540px;
+	float: left;
+	margin-right:10px;
+    border: 1px solid #e7e7eb;
+}
+
+.weixin-menu-box .weixin-preview .weixin-hd{
+	position: relative;
+	top:0px;
+	left:0px;
+    width: 320px;
+	height:64px;
+   	color: #fff;
+    text-align: center;
+	background: transparent url(../img/custom-menu/menu_head.png) no-repeat 0 0;
+	background-position: 0 0;
+}
+
+.weixin-preview .weixin-hd .weixin-title {
+	position:absolute;
+	top: 33px;
+	left: 0px;
+	width:100%;
+	text-align: center;
+	color:#fff;
+	font-size:14px;
+}
+
+.weixin-preview .weixin-menu{
+	position: absolute;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#f1f1f1), to(#dcdcdc), color-stop(35% ,#ededed), color-stop(50%, #e3e3e3) );
+}
+
+/* 一级菜单 */
+.weixin-preview .weixin-menu .menu-item{
+	position: relative;
+	float: left;
+	width: 33.26%;
+	height: 45px;
+	line-height: 45px;
+	cursor: pointer;
+    text-align: center;
+	border-left: 1px solid #e7e7e7;
+	color:#616161;
+	border: 1px solid rgba(190,190,190,1);
+    border-bottom: 0;
+    /*border-right: 1px;*/
+    -webkit-box-shadow: inset 0 0 3px #fff;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#f1f1f1), to(#dcdcdc), color-stop(35% ,#ededed), color-stop(50%, #e3e3e3) );
+}
+
+/*二级菜单*/
+.weixin-preview .weixin-sub-menu{
+	display:block;
+	position:absolute;
+	z-index:220;
+	bottom:60px;
+	left:50%;
+	width:100px;
+	margin-left:-50px;
+	border-radius:5px;
+	-webkit-box-shadow:inset 0 0 3px #fff;
+	background:url(../img/custom-menu/2.svg#3) no-repeat center center;
+	-webkit-background-size:100%;
+	background-size:100%;
+}
+.weixin-preview .weixin-sub-menu .menu-sub-item{
+	line-height:38px;
+	text-align:center;
+	background:-webkit-gradient(linear, 0 0, 100% 0, from(rgba(194,194,194,0.8)), to(rgba(194,194,194,0.8)), color-stop(50%, rgba(194,194,194,0.8)));
+	background-size:80% 1px;
+	background-repeat:no-repeat;
+	background-position: center bottom;
+}
+
+.weixin-preview .menu-arrow{
+	position: absolute;
+	left: 50%;
+	margin-left: -6px;
+}
+.weixin-preview .arrow_in{
+	bottom: -4px;
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-width: 6px 6px 0px;
+	border-style: solid dashed dashed;
+	border-color: #fafafa  transparent transparent;
+}
+.weixin-preview .arrow_out{
+	bottom: -5px;
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-width: 6px 6px 0px;
+	border-style: solid dashed dashed;
+	border-color: #d0d0d0 transparent transparent;
+}
+
+.weixin-preview .menu-item .menu-item-title,.weixin-preview .menu-sub-item .menu-item-title{
+	width:100%;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	box-sizing: border-box;
+}
+
+/* 一级菜单选中状态 */
+.weixin-preview .menu-item.current,.weixin-preview .menu-sub-item.current{
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#e3e3e3), color-stop(35% ,#ededed), color-stop(50%, #e3e3e3) );
+}
+
+.weixin-preview .weixin-sub-menu.show{
+	display:block;
+}
+
+.weixin-preview .icon_menu{
+    background: url(../img/custom-menu/menu_add.png) 0px -36px no-repeat;
+    width: 7px;
+    height: 7px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 2px;
+    margin-top: -2px;
+}
+.weixin-preview .icon_sub_menu{
+	background: url(../img/custom-menu/menu_add.png) 0px 0px no-repeat;
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: -2px;
+}
+.weixin-preview li:hover .icon_sub_menu{
+	background: url(../img/custom-menu/menu_add.png) 0px -18px no-repeat;
+}
+
+/*菜单内容*/
+.weixin-menu-detail{
+	position: absolute;
+	top: 0;
+	left: 330px;
+    right: 0;
+    height: 540px;
+    padding: 20px;
+    background: #f4f5f9;
+    border: 1px solid #e8e8ec;
+    overflow: hidden;
+}
+.weixin-menu-detail .menu-name{
+	float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+}
+.weixin-menu-detail .menu-del{
+	float: right;
+    height: 40px;
+    line-height: 40px;
+    color: #459ae9;
+	cursor:pointer;
+}
+
+.weixin-menu-detail .menu-line{
+	border-bottom: 2px #e8e8e8 solid;
+}
+
+.weixin-menu-detail .menu-input-group{
+	margin:10px 0 30px 0;
+	overflow: hidden;
+}
+.weixin-menu-detail .menu-label{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width:80px;
+	text-align: right;
+}
+.weixin-menu-detail .menu-input{
+	float:left;
+	width: 380px
+}
+.weixin-menu-detail .menu-input-text{
+	border: 0px;
+	outline: 0px;
+	background: #fff;
+	width: 300px;
+	padding: 5px 0px 5px 0px;
+	margin-left: 10px;
+	text-indent: 10px;
+	height: 35px;
+}
+.weixin-menu-detail .menu-tips{
+	color: #8d8d8d;
+	padding-top: 4px;
+	margin:0;
+}
+.weixin-menu-detail .menu-tips.cursor{
+	color: #459ae9;
+    cursor: pointer;
+}
+
+.weixin-menu-detail .menu-input .menu-tips{
+	margin:0 0 0 10px;
+}
+.weixin-menu-detail .menu-content{
+	padding: 16px 20px;
+	border: 1px solid #e7e7eb;
+	background-color: #fff;
+}
+.weixin-menu-detail .menu-content .menu-input-group{
+	margin: 0px 0 10px 0;
+}
+.weixin-menu-detail .menu-content .menu-label{
+	text-align: left;
+	width:100px;
+}
+.weixin-menu-detail .menu-content .menu-input-text{
+	border: 1px solid #e7e7eb;
+}
+.weixin-menu-detail .menu-content .menu-tips{
+	padding-bottom: 10px;
+}
+.sub-menu-radio {
+	margin: 5px 0 10px 10px;
+}
+.menu_dialog {
+	height: 400px;
+	overflow: auto;
+	overflow-x: hidden;
+}

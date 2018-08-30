@@ -1,0 +1,35 @@
+{
+	"data":[
+		{
+			"menuName":"曝光台",
+			"menuLink":"/exposure"
+		},{
+			"menuName":"投诉举报",
+			"menuLink":"/report/event"
+		},{
+			"menuName":"我的举报",
+			"menuLink":"/event/my"
+		},{
+			"menuName":"联系我们",
+			"menuLink":"/gov"
+		},{
+			"menuName":"剿劣行动",
+			"menuLink":"/micro"
+		},{
+			"menuName":"曝光台",
+			"menuLink":"/exposure"
+		},{
+			"menuName":"投诉举报",
+			"menuLink":"/report/event"
+		},{
+			"menuName":"我的举报",
+			"menuLink":"/event/my"
+		},{
+			"menuName":"联系我们",
+			"menuLink":"/gov"
+		},{
+			"menuName":"剿劣行动",
+			"menuLink":"/micro"
+		}
+	]
+}

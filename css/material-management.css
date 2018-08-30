@@ -1,0 +1,341 @@
+/**
+ * ================================
+ * 描述说明  素材管理
+ * @author YuanHaiTao</br>2018/01/26
+ * @version 1.0.0
+ * ================================
+ */
+
+.material-tab-pannel {
+	margin: 20px;
+}
+
+.graphic-media-box {
+	border-bottom: 1px solid #ccc;
+}
+
+.graphic-footer i:hover {
+	cursor: pointer;
+	color: darkmagenta;
+}
+
+.material-tab-pannel .tab-panel .picture-box .col-lg-3 {
+	border: solid 1px #e3e3e3;
+	border-radius: 4px;
+	padding: 0;
+	margin: 10px 0;
+}
+
+.graphicBox .itemUlBox {
+	margin: 0 50px;
+}
+
+.graphicBox .item {
+	position: relative;
+	border: solid #e3e3e3 1px;
+	margin: 10px 0;
+}
+
+.graphic-pannel {
+	max-width: 1024px;
+}
+
+.pannel-left-cover {
+	height: 200px;
+	cursor: pointer;
+	text-align: center;
+	border: dashed 1px #e3e3e3;
+	overflow: hidden;
+}
+
+.pannel-left-cover .file-drop-zone-title {
+	color: #aaa;
+	font-size: 1.6em;
+	padding: 22px 0px;
+	cursor: default;
+}
+
+.pannel-left-cover .file-drop-zone {
+	border-radius: 4px;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.pannel-left-cover .krajee-default.file-preview-frame {
+	float: left;
+	text-align: center;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.pannel-left-cover .krajee-default.file-preview-frame .kv-file-content {
+	width: 213px;
+	height: auto;
+}
+
+.pannel-left-author {
+	margin: 5px 0;
+}
+
+.pannel-right-title {
+	margin-bottom: 5px;
+}
+
+textarea.pannel-right-mainContent {
+	height: 200px;
+}
+
+.btn-wxback {
+	position: absolute;
+	bottom: 150px;
+	right: 50%;
+	color: #ffffff !important;
+	font-size: 14px;
+	background: #7266ba;
+	background-color: #7266ba;
+	border-color: #7266ba;
+	display: inline-block;
+	padding: 0 10px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	outline: 0;
+	border: 0;
+	text-align: center;
+}
+
+.graphicContainer {
+	cursor: pointer;
+	width: 20%;
+	height: 1265px;
+	display: inline-block;
+	float: left;
+	border: solid 1px #e3e3e3;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.graphicContainer ul li a i {
+	cursor: pointer;
+}
+
+.itemContent {
+	position: relative;
+}
+
+.itemTitle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 5px 0;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.3);
+	text-align: center;
+	font-size: 12px;
+}
+
+.itemBody {
+	height: 150px;
+}
+
+.itemBody img {
+	width: 100%;
+	height: 100%;
+}
+
+.itemFooter {
+	display: flex;
+	text-align: center;
+	padding: 5px 0;
+}
+
+.itemFooter .materialDel,
+.itemFooter .graphicEdit {
+	cursor: pointer;
+	display: inline-block;
+	width: 50%;
+}
+.materialDelone{
+	cursor: pointer;
+	display: inline-block;
+	width: 100%;
+}
+
+.itemFooter .materialDel:hover,
+.itemFooter .graphicEdit:hover {
+	color: #78437b;
+	cursor: pointer;
+}
+
+.addBtn {
+	margin: 60px;
+	text-align: center;
+}
+
+.itemAddBtnBox {
+	cursor: pointer;
+}
+
+.itemAddBtnBox:hover {
+	background-color: #efefef;
+}
+
+#graphicForm ul li {
+	position: relative;
+	float: left;
+	width: 250px;
+	height: 280px;
+	border: solid 1px #e3e3e3;
+	text-align: center;
+	margin: 2px;
+}
+
+.choseImage {
+	display: inline-block;
+	width: 250px;
+	height: 250px;
+}
+
+.choseImage:hover {
+	position: absolute;
+	cursor: pointer;
+	width: 250px;
+	height: 250px;
+	background-color: #000;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-opacity: 0.6;
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	display: block;
+	text-align: center;
+	z-index: 1000;
+}
+
+.imgCoverNone {
+	position: absolute;
+	width: 250px;
+	height: 280px;
+	background-color: #000;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-opacity: 0.5;
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	display: none;
+	text-align: center;
+	z-index: 1000;
+}
+
+.graphicCover{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-opacity: 0.5;
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	display: block;
+	text-align: center;
+	z-index: 1000;
+}
+.imgCoverBlc {
+	position: absolute;
+	width: 250px;
+	height: 280px;
+	background-color: #000;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-opacity: 0.5;
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	display: block;
+	text-align: center;
+	z-index: 1000;
+}
+
+#graphicForm ul li .imgTitle {
+	position: absolute;
+	width: 250px;
+	text-align: center;
+	line-height: 30px;
+	color: #000;
+	bottom: 0;
+}
+
+.graphic-modal-dialog {
+	width: 840px;
+	top: 30%;
+}
+
+.uploadImg {
+	width: 300px;
+	height: 300px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.uploadImg img {
+	border-radius: 6px;
+}
+
+.graphic-media-box .graphicMediaContent p,
+.graphic-media-box .graphicMediaContent h1,
+.graphic-media-box .graphicMediaContent h2,
+.graphic-media-box .graphicMediaContent h3,
+.graphic-media-box .graphicMediaContent h4,
+.graphic-media-box .graphicMediaContent h5,
+.graphic-media-box .graphicMediaContent span,
+.graphic-media-box .graphicMediaContent b,
+.graphic-media-box .graphicMediaContent i {
+	font-size: 14px;
+	display: inline-block;
+}
+
+.graphic-media-box .graphicMediaHead {
+	font-size: 18px;
+	font-weight: bold;
+}
+.graphic-media-box .graphicMediaContent {
+	display: block;
+    height: 100px;
+    overflow: hidden;
+}
+.oneEditorCover{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 150px;
+    background-color: #2112129c;
+}
+.saveOneBtn{
+	position: absolute;
+	bottom: 0;
+    left: 0;
+    height: 38px;
+    width: 100%;
+    color: #ffffff !important;
+    background-color: #ee3939;
+    border-color: #ed2a2a;
+}

@@ -1,0 +1,65 @@
+<div class="admin-main" style="padding: 10px;" ng-controller="userInfo">
+    <fieldset class="layui-elem-field">
+        <legend style="width: 100px;border-bottom: 0px">用户信息</legend>
+        <div class="layui-field-box">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <div id="reportDetailForm">
+                    <form class="layui-form" style="width: 600px">
+                        <div id="" class="layui-layer-content userInfo">
+                            <form id="bindForm" class="layui-form layui-layer-wrap" action="">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">公众号名称</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxname" required="" lay-verify="required" ng-model="userData.wxname" placeholder="请输入名称(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">微信原始ID</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxinitid" required="" lay-verify="required" ng-model="userData.wxinitid" placeholder="请输入公众号原始Id(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">开发者ID</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxappid" required="" lay-verify="required" ng-model="userData.wxappid" placeholder="请输入AppId(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">开发者密码</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxappsecret" required="" lay-verify="required" ng-model="userData.wxappsecret" placeholder="请输入AppSecret(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">Token</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxtoken" required="" lay-verify="required" ng-model="userData.wxtoken" placeholder="请输入Token(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">EncodingAESKey</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="wxaeskey" placeholder="请输入EncodingAESKey(选填)" ng-model="userData.wxaeskey" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">基础域名</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="basedomain" required="" lay-verify="required" ng-model="userData.basedomain" placeholder="请输入基础域名(必填)" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit="" lay-filter="formBindWX" ng-click="bindUser()">立即提交</button>
+                                        <!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

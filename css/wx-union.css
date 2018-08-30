@@ -1,0 +1,97 @@
+﻿/**
+ * ================================
+ * 描述说明
+ * @author YHT</br>2018/07/18
+ * @version 1.0.0
+ * ================================
+ */
+
+.img-content{
+	width: 120px;
+	height: 120px;
+	margin-left: 91px;
+}
+.img-content img{
+	width: 100%;
+	height: 100%;
+}
+.detail-content{
+	position: relative;
+    padding: 25px 0px;
+    margin-bottom: 30px;
+    color: inherit;
+}
+.picThumb-content {
+	width: 250px;
+	height: auto;
+	margin: 30px auto;
+}
+.picThumb-content img{
+	width: 100%;
+	height: auto;
+}
+.picThumb-desc-content{
+	text-indent: 25px;
+}
+.picThumb-desc {
+	width: 300px;
+	text-align:left;
+	margin: 0 auto;
+}
+.detail-content .picQrcode{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.picQrcode-content {
+	width: 120px;
+	height: 120px;
+}
+.picQrcode-content img{
+	width: 100%;
+	height: 100%;
+} 
+.detail-content .picQrcode .qrcode-tips span{
+    display: inline-block;
+    line-height: 14px;
+    color: #666;
+    font-size: 14px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.shake{
+    -webkit-animation-name: shake_box;
+    -ms-animation-name: shake_box;
+    animation-name: shake_box;
+    -webkit-animation-duration: 500ms;
+    -ms-animation-duration: 500ms;
+    animation-duration: 500ms;
+    -webkit-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    animation-delay: 0s;
+    /*-webkit-animation-play-state: running;
+    -ms-animation-play-state: running;
+    animation-play-state: running;*/
+}
+.shake:hover{
+    -webkit-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    /*-webkit-animation-play-state: paused;
+    -ms-animation-play-state: paused;
+    animation-play-state: paused;*/
+}
+@keyframes shake_box{
+    0% {transform: translate(0px, 0px) rotate(0deg)}
+    20% {transform: translate(2.5px, -2.5px) rotate(-2.5deg)}
+    40% {transform: translate(-3.5px, 0.5px) rotate(-0.5deg)}
+}
+@-ms-keyframes shake_box{
+    0% {-ms-transform: translate(0px, 0px) rotate(0deg)}
+    20% {-ms-transform: translate(1.5px, -2.5px) rotate(-1.5deg)}
+    40% {transform: translate(-2.5px, 0.5px) rotate(-0.5deg)}
+}

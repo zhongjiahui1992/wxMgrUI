@@ -1,0 +1,161 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">自定义菜单</h1>
+</div>
+<div class="wrapper-md" ng-controller="customMenuController">
+	<div class="panel panel-default m-all-0">
+		<div class="panel-body">
+			<fieldset class="custom-menu-filedsetbox">
+				<legend>自定义菜单</legend>
+				<div class="weixin-menu-box">
+					<!--预览窗-->
+					<div class="weixin-preview">
+						<div class="weixin-hd">
+	                        <div class="weixin-title">{{initMenu.weixinTitle}}</div>
+	                    </div>
+	                    <div class="weixin-bd" ng-init="getMenu()">
+	                        <ul class="weixin-menu" id="weixin-menu" >
+	                            <li ng-repeat="(i,btn) in menu.buttons" class="menu-item" ng-class="{current:selectedMenuIndex===i&&selectedMenuLevel()==1}" ng-click="selectedMenu(i)">
+	                               <div class="menu-item-title">
+	                               		<i class="icon_menu"></i>
+	                                    <span>{{btn.name}}</span>
+	                                </div>
+	                                <ul class="weixin-sub-menu" ng-show="selectedMenuIndex===i">
+	                                    <li ng-repeat="(i2,sub) in btn.subButtons" class="menu-sub-item" ng-class="{current:selectedSubMenuIndex===i2&&selectedMenuLevel()==2}"  ng-click="selectedSubMenu(i2); $event.stopPropagation();">
+	                                        <div class="menu-item-title">
+	                                            <span>{{sub.name}}</span>
+	                                        </div>
+	                                    </li>
+	                                    <li ng-if="btn.subButtons.length<5" class="menu-sub-item" ng-click="addMenu(2);$event.stopPropagation();">
+	                                        <div class="menu-item-title">
+	                                            <i class="icon_sub_menu"></i>
+	                                        </div>
+	                                    </li>
+	                                    <i class="menu-arrow arrow_out"></i>
+	                                    <i class="menu-arrow arrow_in"></i>
+	                                </ul>
+	                            </li>
+	                            <li class="menu-item" ng-if="menu.buttons.length<3" ng-click="addMenu(1)"> <i class="icon_sub_menu"></i></li>
+	                        </ul>
+	                    </div>
+					</div>
+					<!--主菜单-->					
+					<div class="weixin-menu-detail" ng-if="selectedMenuLevel()==1" >
+						<div class="menu-input-group menu-line">
+	                        <div class="menu-name">{{menu.buttons[selectedMenuIndex].name}}</div>
+	                        <div class="menu-del" ng-click="delMenu()">删除菜单</div>
+	                    </div>
+	                    <div class="menu-input-group">
+	                        <div class="menu-label">菜单名称</div>
+	                        <div class="menu-input">
+	                            <input type="text" name="name" placeholder="请输入菜单名称" class="menu-input-text" ng-model="menu.buttons[selectedMenuIndex].name" ng-change="checkMenuName(menu.buttons[selectedMenuIndex].name)">
+	                            <p class="menu-tips" style="color:#e15f63" ng-show="menuNameBounds">字数超过上限</p>
+	                            <p class="menu-tips">字数不超过4个汉字或8个字母</p>
+	                        </div>
+	                    </div>
+	                    <!--当前主菜单子菜单数目为0.为主菜单添加链接，此项功能暂时隐藏-->
+	                    <!--<div ng-if="menu.buttons[selectedMenuIndex].subButtons.length==0">
+	                        <div class="menu-input-group">
+		                        <div class="menu-label">主菜单内容</div>
+		                        <div class="menu-input">
+						            <div class="radio sub-menu-radio">
+						                <label class="i-checks">
+						                    <input type="radio" name="a" value="option" checked>
+						                    <i></i>
+						                	跳转网页
+						                </label>
+						            </div>
+		                        </div>
+		                    </div>
+		                    <div class="menu-content">
+		                        <div class="menu-input-group">
+		                            <p class="menu-tips">订阅者点击该菜单会跳到以下链接</p>
+		                            <div class="menu-label">页面地址</div>
+		                            <div class="menu-input">
+		                                <input type="text" placeholder="" class="menu-input-text" ng-model="menu.buttons[selectedMenuIndex].subButtons[selectedSubMenuIndex].url">
+		                                <p class="menu-tips cursor" ng-click="selectNewsUrl()">从公众号图文消息中选择</p>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </div>-->
+					</div>
+					<!-- 子菜单 -->
+	                <div class="weixin-menu-detail" ng-if="selectedMenuLevel()==2">
+	                    <div class="menu-input-group" style="border-bottom: 2px #e8e8e8 solid;">
+	                        <div class="menu-name">{{menu.buttons[selectedMenuIndex].subButtons[selectedSubMenuIndex].name}}</div>
+	                        <div class="menu-del" ng-click="delMenu()">删除子菜单</div>
+	                    </div>
+	                    <div class="menu-input-group">
+	                        <div class="menu-label">子菜单名称</div>
+	                        <div class="menu-input">
+	                            <input type="text" placeholder="请输入子菜单名称" class="menu-input-text" ng-model="menu.buttons[selectedMenuIndex].subButtons[selectedSubMenuIndex].name" ng-change="checkMenuName(menu.buttons[selectedMenuIndex].subButtons[selectedSubMenuIndex].name)">
+	                            <p class="menu-tips" style="color:#e15f63" ng-show="menuNameBounds">字数超过上限</p>
+	                            <p class="menu-tips">字数不超过8个汉字或16个字母</p>
+	                        </div>
+	                    </div>
+	                    <div class="menu-input-group">
+	                        <div class="menu-label">子菜单内容</div>
+	                        <div class="menu-input">
+					            <div class="radio sub-menu-radio">
+					                <label class="i-checks">
+					                    <input type="radio" name="a" value="option" checked>
+					                    <i></i>
+					                	跳转网页
+					                </label>
+					            </div>
+	                        </div>
+	                    </div>
+	                    <div class="menu-content">
+	                        <div class="menu-input-group">
+	                            <p class="menu-tips">订阅者点击该子菜单会跳到以下链接</p>
+	                            <div class="menu-label">页面地址</div>
+	                            <div class="menu-input">
+	                                <input type="text" placeholder="" class="menu-input-text" ng-model="menu.buttons[selectedMenuIndex].subButtons[selectedSubMenuIndex].url">
+	                                <p class="menu-tips cursor" ng-click="selectNewsUrl()">从公众号图文消息中选择</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="panel-footer txt-c">
+        	<button type="submit" class="btn btn-success" ng-click="creatMenu()">保存并发布</button>
+		</div>
+	</div>
+	<div class="modal fade" id="newsUrl"  role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">编辑页面地址</h4>
+				</div>
+				<div class="modal-body menu_dialog">
+					<table class="table table-hover" style="height: 400px;overflow: auto;overflow-x: hidden;">
+                        <tr>
+                            <th class="wid-5">选择</th>
+                            <th class="wid-25">菜单名称</th>
+                            <th class="wid-25">菜单链接</th>
+                        </tr>
+                        <tr ng-repeat="modal in modalList" ng-init="$index=+1">
+							<td ng-class-odd="'active'" ng-class-even="'bg-FFF'" style="text-align: center;">
+								<input type="radio" name="linkList" ng-click="linkList(modal.url,modal.urlType)"  value="{{modal.url}}" ng-model="url">
+							</td>
+                            <td ng-class-odd="'active'" ng-class-even="'bg-FFF'">{{modal.name}}</td>
+                            <td ng-class-odd="'active'" ng-class-even="'bg-FFF'">{{modal.url}}</td>
+                        </tr>
+                    </table>
+				</div>
+				<div class="modal-footer text-l">
+					<a href="javascript:;" class="btn btn-primary btn-o" ng-click="setNewsUrl()">
+						<i class="fa fa-check"></i>
+						<span>确 定</span>
+					</a>
+					<a href="javascript:;" class="btn btn-default btn-o" data-dismiss="modal">
+						<i class="fa fa-reply"></i>
+						<span>取消</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

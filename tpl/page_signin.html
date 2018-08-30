@@ -1,0 +1,143 @@
+<div class="container w-auto-xs login-con" ng-controller="SigninFormController"
+     ng-init="app.settings.container = false;initPlatformInfo()" ng-cloak>
+
+    <div id="loginCarousel">
+        <carousel interval="myInterval" no-wrap="noWrapSlides" style="height: 100%">
+            <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}"/>
+            </slide>
+        </carousel>
+    </div>
+
+    <div class="login-main">
+        <div class="login-tit">
+            <h4 style="font-size: 30px;font-weight: 600;color: blue">欢迎登录！</h4>
+        </div>
+        <div class="navbar-brand block m-t" style="position: absolute; left: 0;">
+                 <span class="imgBox">
+                    <img ng-src="{{app.logoImg}}" src="img/logo.png" ng-class="{'hide':noblock}"/>
+                 </span>
+            <span class="hidden-folded m-l-xs logoTitle" style="font-size: 24px">{{app.name}}</span>
+        </div>
+        <div class="login-wrap">
+            <!-- 登录选项 -->
+            <ul id="login_tab">
+                <li class="active"><a onclick="login_tab('login_tab_con0',this)" href="javascript:void(0)">密码登录</a></li>
+                <li class=""><a onclick="login_tab('login_tab_con1',this)" href="javascript:void(0)">验证码登录</a>
+                </li>
+            </ul>
+            <div id="login_tab_con">
+                <!--用户名密码登录-->
+                <div style="display: block;" id="login_tab_con0" class="login_tab_con">
+                    <form name="form" class="form-validation">
+                        <div class="text-danger wrapper text-center" ng-show="authError">
+                            {{authError}}
+                        </div>
+                        <div class="list-group list-group-sm login-list-group">
+                            <div class="list-group-item">
+                                <input type="text" placeholder="用户名/手机号码" class="form-control no-border"
+                                       ng-model="user.username" required>
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="list-group-item">
+                                <input type="text" placeholder="请输入密码" class="form-control no-border"
+                                       ng-model="user.password" onfocus="this.type='password'" required>
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="list-group-item codexx">
+                                <input type="text" placeholder="请输入验证码" class="form-control no-border"
+                                       ng-model="user.code" required>
+                                <i class="fa fa-key"></i>
+                                <div class="code" title="点击刷新验证码" ng-style="validecode" ng-click="freshCode()"></div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()"
+                                ng-disabled='form.$invalid'>登 录
+                        </button>
+                        <!--<div class="login-other text-center m-t m-b">-->
+                        <!--<label class="checkbox-inline i-checks">-->
+                        <!--<input type="checkbox" value="option1"><i></i> 记住密码-->
+                        <!--</label>-->
+
+                        <!--<a ui-sref="access.forgotpwd">忘记密码?</a>-->
+                        <!--</div>-->
+                    </form>
+                </div>
+                <!--手机验证码登录-->
+                <div style="display: none;" id="login_tab_con1" class="login_tab_con">
+                    <form name="form" class="form-validation">
+                        <div class="text-danger wrapper text-center" ng-show="authError">
+                            {{authError}}
+                        </div>
+                        <div class="list-group list-group-sm login-list-group">
+                            <div class="list-group-item">
+                                <input type="tel" placeholder="请输入手机号码" class="form-control no-border"
+                                       ng-model="user.username" required>
+                                <i class="fa fa-tablet"></i>
+                            </div>
+                            <!--<div class="list-group-item">-->
+                            <!--<input type="password" placeholder="请输入验证码" class="form-control no-border"-->
+                            <!--ng-model="user.code" required>-->
+                            <!--<i class="fa fa-key"></i>-->
+                            <!--<button type="button" class="btn btn-default" ng-click="code()"-->
+                            <!--style="position: absolute; top: 6px; right: 10px;">-->
+                            <!--发送验证码-->
+                            <!--</button>-->
+                            <!--</div>-->
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="layer.alert('暂未开通')"
+                                ng-disabled='form.$invalid'>登 录
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--技术支持和服务热线-->
+    <div class="text-center page-footer" ng-include="'tpl/blocks/page_footer.html'">
+        {% include 'blocks/page_footer.html' %}
+    </div>
+
+    <!--建议提醒-->
+    <div class="alert alert-info alert-suggest alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right: 0"><span
+                aria-hidden="true">×</span></button>
+        <i class="fa fa-warning"></i>本系统建议在IE9以上的浏览器，分辨率1366*768以上使用。
+    </div>
+
+    <!--二维码-->
+    <!--<div class="qr-code">-->
+    <!--<div class="qr-code-item" ng-repeat="code in codeList">-->
+    <!--<div class="code-item" ng-mouseenter="codeImg = true" ng-mouseleave="codeImg = false">-->
+    <!--<span>{{code.name}}</span>-->
+    <!--</div>-->
+    <!--<div class="code_img" ng-show="codeImg">-->
+    <!--<h4>扫描二维码</h4>-->
+    <!--<p>{{code.scan}}</p>-->
+    <!--<img ng-src="{{code.src}}">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+
+
+<script>
+
+    //登录页签
+    function login_tab(login_tab_con_container, selfObj) {
+        var login_tab_con = document.getElementById("login_tab").getElementsByTagName("li");
+        var login_tab_conlength = login_tab_con.length;
+        for (i = 0; i < login_tab_conlength; i++) {
+            login_tab_con[i].className = "";
+        }
+        selfObj.parentNode.className = "active";
+
+        for (i = 0; j = document.getElementById("login_tab_con" + i); i++) {
+            j.style.display = "none";
+        }
+
+        document.getElementById(login_tab_con_container).style.display = "block";
+    }
+
+</script>

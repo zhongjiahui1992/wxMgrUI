@@ -1,0 +1,31 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">微信联盟</h1>
+</div>
+<div class="wrapper-md" ng-controller="detailWxUnionController" ng-init="init()">
+	<div class="panel panel-default pmcontainer">
+		<div class="panel-body">
+			<div class="detail-content text-center">
+			   <h1 ng-bind='title'></h1>
+				<div class="picThumb-content">
+					<img id="picThumb" class="uploadImage" err-src="img/Thumb.jpg" />
+				</div>
+				<div class="picThumb-desc-content">
+					<p class="picThumb-desc" ng-bind='description'></p>
+				</div>
+				<div class="picQrcode">
+					<div class="picQrcode-content">
+						<img id="picQrcode" class="uploadImage shake" err-src="img/upload.png" />
+						<p>微信扫一扫</p>
+						<p>关注该公众号</p>
+					</div>
+				</div>
+			</div>
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+			<div class="btn-box">
+				<button type="submit" class="btn btn-primary" ng-click="back()">
+		          <i class="fa fa-reply"></i>返回
+		        </button>
+			</div>
+		</div>
+	</div>
+</div>

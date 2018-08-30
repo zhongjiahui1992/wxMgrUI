@@ -1,0 +1,349 @@
+﻿/**
+ * ================================
+ * 描述说明
+ * @author haitaoyuan</br>2017/11/10
+ * @version 1.0.0
+ * ================================
+ */
+
+/* 字体大小 */
+.font-12 { font-size:12px; }
+.font-13 { font-size:13px; }
+.font-14 { font-size:14px; }
+.font-15 { font-size:15px; }
+.font-16 { font-size:16px; }
+.font-17 { font-size:17px; }
+.font-18 { font-size:18px; }
+.font-19 { font-size:19px; }
+.font-20 { font-size:20px; }
+/* 行高 */
+.line-h20 { line-height:20px; }
+.line-h25 { line-height:25px; }
+.line-h30 { line-height:30px; }
+.line-h35 { line-height:35px; }
+.line-h40 { line-height:40px; }
+/* 字体加粗 */
+.font-bold { font-weight: bold; }
+/* 段落缩进 */
+.txt-indent { text-indent: 16px; }
+/* 字体颜色 */
+.font-696969 { color: #696969; }
+.font-DDD { color: #DDDDDD; }
+/* 块级显示 */
+.dis-blc { display: block; }
+.dis-none { display: none; }
+.dis-inline { display: inline; }
+.dis-i-blc { display: inline-block; }
+.dis-flex { display: flex; }
+.dis-table-row { display: table-row; }
+.dis-table-cell { display: table-cell; }
+/* 背景颜色 */
+.bg-F0F0F0 { background-color: #F0F0F0; }
+.bg-FFF { background-color: #FFFFFF; }
+
+/* text-align */
+.txt-c { text-align: center; }
+.txt-l { text-align: left; }
+.txt-r { text-align: right; }
+
+/* margin */
+.m-all-0 { margin: 0; }
+.m-l-0  { margin-left: 0px; }
+.m-l-5  { margin-left: 5px; }
+.m-l-10 { margin-left: 10px; }
+.m-l-15 { margin-left: 15px; }
+.m-l-20 { margin-left: 20px; }
+.m-r-0  { margin-right: 0px; }
+.m-r-5  { margin-right: 5px; }
+.m-r-10 { margin-right: 10px; }
+.m-r-15 { margin-right: 15px; }
+.m-r-20 { margin-right: 20px; }
+.m-t-0  { margin-top: 0; }
+.m-t-5  { margin-top: 5px; }
+.m-t-10 { margin-top: 10px; }
+.m-t-15 { margin-top: 15px; }
+.m-t-20 { margin-top: 20px; }
+.m-b-0  { margin-bottom: 0px; }
+.m-b-5  { margin-bottom: 5px; }
+.m-b-10 { margin-bottom: 10px; }
+.m-b-15 { margin-bottom: 15px; }
+.m-b-20 { margin-bottom: 20px; }
+
+/* padding */
+.p-all-0 { padding: 0; }
+.p-l-0  { padding-left: 0; }
+.p-l-5  { padding-left: 5px; }
+.p-l-10 { padding-left: 10px; }
+.p-l-15 { padding-left: 15px; }
+.p-l-20 { padding-left: 20px; }
+.p-l-25 { padding-left: 25px; }
+.p-r-0  { padding-right: 0; }
+.p-r-5  { padding-right: 5px; }
+.p-r-10 { padding-right: 10px; }
+.p-r-15 { padding-right: 15px; }
+.p-r-20 { padding-right: 20px; }
+.p-r-25 { padding-right: 25px; }
+.p-t-0  { padding-top: 0; }
+.p-t-5  { padding-top: 5px; }
+.p-t-10 { padding-top: 10px; }
+.p-t-15 { padding-top: 15px; }
+.p-t-20 { padding-top: 20px; }
+.p-t-25 { padding-top: 25px; }
+.p-b-0  { padding-bottom: 0; }
+.p-b-5  { padding-bottom: 5px; }
+.p-b-10 { padding-bottom: 10px; }
+.p-b-15 { padding-bottom: 15px; }
+.p-b-20 { padding-bottom: 20px; }
+.p-b-25 { padding-bottom: 25px; }
+
+/* 浮动值 */
+.float-l { float: left; }
+.float-r { float: right; }
+
+/* 定位 */
+.position-re { position: relative; }
+.position-ab { position: absolute; }
+.position-st { position: static; }
+.position-fix { position: fixed; }
+
+/* 段落显示行数，其余隐藏 */
+.p_show_1 { -webkit-line-clamp: 1; }
+.p_show_2 { -webkit-line-clamp: 2; }
+.p_show_3 { -webkit-line-clamp: 3; }
+.p_show_4 { -webkit-line-clamp: 4; }
+
+/* 宽度 %*/
+.wid-5 { width:5%; }
+.wid-10 { width:10%; }
+.wid-15 { width:15%; }
+.wid-20 { width:20%; }
+.wid-25 { width:25%; }
+.wid-30 { width:30%; }
+.wid-35 { width:35%; }
+.wid-40 { width:40%; }
+.wid-45 { width:45%; }
+.wid-50 { width:50%; }
+.wid-55 { width:55%; }
+.wid-60 { width:60%; }
+.wid-65 { width:65%; }
+.wid-70 { width:70%; }
+.wid-75 { width:75%; }
+.wid-80 { width:80%; }
+.wid-85 { width:85%; }
+.wid-90 { width:90%; }
+.wid-95 { width:95%; }
+.wid-100 { width:100%; }
+
+/* 宽度 px*/
+.wid-5px { width:5px; }
+.wid-10px { width:10px; }
+.wid-15px { width:15px; }
+.wid-20px { width:20px; }
+.wid-25px { width:25px; }
+.wid-30px { width:30px; }
+.wid-35px { width:35px; }
+.wid-40px { width:40px; }
+.wid-45px { width:45px; }
+.wid-50px { width:50px; }
+.wid-55px { width:55px; }
+.wid-60px { width:60px; }
+.wid-65px { width:65px; }
+.wid-70px { width:70px; }
+.wid-75px { width:75px; }
+.wid-80px { width:80px; }
+.wid-85px { width:85px; }
+.wid-90px { width:90px; }
+.wid-95px { width:95px; }
+.wid-100px { width:100px; }
+
+
+/* 页面区域 */
+.form-inline .form-control { margin-right: 5px; }
+.form-inline .input-short { float: left; width: 160px; }
+.form-inline .input-long { float: left;width: 453px; }
+.form-inline .input-short-o { float: left;width: 130px;margin: 0; }
+.form-inline .textarea-long { float: left;width: 453px; }
+.form-inline .select-short { float: left;width: 160px; }
+
+/* 表单  */
+.form-item {
+    position: relative;
+    display: inline-block;
+    min-width: 290px;
+    margin: 5px 0;
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.form-item label {
+    float: left;
+    line-height: 24px;
+    color: #555;
+    width: 95px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    padding: 5px;
+    margin: 0;
+}
+.form-item span {
+	display: inline-block;
+    line-height: 34px;
+    color: #666;
+    font-size: 14px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+.form-item span.required {
+	color: #f00;
+	font-weight: bold;
+}
+.input-group-addon {
+	float: left;
+	width: 30px;
+    height: 34px;
+    padding: 0;
+    border-left: none;
+    margin-right: 5px;
+}
+.input-group-addon i {
+	line-height: 34px;
+	text-align: center;
+}
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+/* 表格头部按钮：新增、导出、导入 */
+.table-bar {
+	padding-bottom: 15px;
+}
+.table-bar button {
+	margin-right: 5px;
+	padding: 0 10px;
+	line-height: 1.75rem;
+}
+/* 表格操作图标 */
+.table .btn {
+   min-width: 24px;
+}
+.table a {
+    color: #428bca;
+}
+/* 底部按钮样式 */
+.btn-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 5px 0 5px 105px;
+    background-color: #fff;
+}
+.btn-box button {
+	margin-right: 5px;
+}
+.btn-box button i {
+	margin-right: 5px;
+}
+
+/* 日期模块 */
+.form-inline .date_picker {
+	position: relative;
+	display: inline-flex;
+}
+.form-inline .date_picker .input-group-addon { width: 34px; }
+.form-inline .date_picker .form-control { width: 130px; }
+.form-inline .date_picker > .form-control { width: 130px; }
+
+/* 页码 */
+.page-list .pagination {float: left; margin-top: 0;}
+.page-list .pagination span {cursor: pointer;}
+.page-list .pagination .separate span{cursor: default; border-top:none;border-bottom:none;}
+.page-list .pagination .separate span:hover {background: none;}
+.page-list .page-total {float:left; margin: 4px 20px;}
+.page-list .page-total input, .page-list .page-total select{height: 26px; border: 1px solid #ddd;}
+.page-list .page-total input {width: 40px; padding-left:3px;}
+.page-list .page-total select {width: 50px;}
+
+
+/* 日期板块 */
+.form-inline .date_picker {
+	position: relative;
+	display: inline-flex;
+}
+.form-inline .date_picker .input-group-addon { width: 34px; }
+.form-inline .date_picker .form-control { width: 130px; }
+.form-inline .date_picker > .form-control { width: 130px; }
+
+
+/* logo样式调整 */
+.imgBox {
+    display: inline-block;
+    width: 36px;
+    height: 50px;
+}
+.imgBox img {
+    max-width: 36px;
+    max-height: 36px;
+}
+/* 模态框  */
+.modal-backdrop.in {
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+}
+.modal-dialog {
+	width: 600px;
+	height: 270px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -135px;
+	margin-left: -300px;
+}
+
+.modal-dialog2 {
+    width: 900px;
+    height: 270px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -135px;
+    margin-left: -450px;
+}
+/* 触发模态框后，对底层input设置 */
+.input-group .form-control {
+	z-index: 0;
+}
+/* yznzhihang-panel内边距 */
+.header-tablebox{
+	padding:20px 15px;
+}
+
+
+
+/* 顶部一级菜单样式 */
+/*.navbar-nav > li.navbar-li {
+    padding: 5px;
+    width: 64px;
+    height: 100%;
+    overflow: hidden;
+}*/
+.navbar-nav > li.navbar-li a {
+    padding: 2px 5px 0;
+    width: 64px;
+    height: 100%;
+    overflow: hidden;
+}
+.navbar-nav > li.navbar-li a i {
+    float: left;
+    width: 54px;
+    height: 28px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 28px;
+}
+.navbar-nav > li.navbar-li a label {
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    line-height: 20px;
+    margin: 0;
+}
